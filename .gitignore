@@ -45,3 +45,5 @@ Thumbs.db
 
 # IDEA stuff
 .idea/
+.idea/workspace.xml
+dist.tgz
