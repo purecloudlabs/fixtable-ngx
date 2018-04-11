@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FixtableComponent } from './fixtable.component';
+import { GridComponent } from './grid/grid.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [
-    FixtableComponent
+    GridComponent
   ],
   exports: [
-    FixtableComponent
+    GridComponent
   ]
 })
 export class FixtableModule { }
