@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "pack": "ng-packagr -p ng-package.json",
-    "install": "ln -s ./pre-commit .git/hooks/pre-commit"
+    "install": "[[ ! -f ./git/hooks/pre-commit ]] || ln -s ./pre-commit .git/hooks/pre-commit"
   },
   "private": false,
   "ngPackage": {
