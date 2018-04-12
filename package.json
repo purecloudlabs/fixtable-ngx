@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "packagr": "ng-packagr -p ng-package.json"
+    "pack": "ng-packagr -p ng-package.json",
+    "echo": "echo 'I work"
   },
   "private": false,
   "ngPackage": {
@@ -51,6 +52,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "ng-packagr": "^2.4.2",
     "protractor": "~5.1.2",
+    "pre-commit": "^1.2.2",
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
     "typescript": "~2.5.3"
@@ -62,5 +64,8 @@
   "metadata": "dist/purecloud-fixtable-fangular.metadata.json",
   "dependencies": {
     "tslib": "^1.7.1"
-  }
+  },
+  "pre-commit": [
+    "echo"
+  ]
 }
