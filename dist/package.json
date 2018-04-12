@@ -18,6 +18,18 @@
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
+    "@angular/animations": "^5.2.0",
+    "@angular/common": "^5.2.0",
+    "@angular/compiler": "^5.2.0",
+    "@angular/core": "^5.2.0",
+    "@angular/forms": "^5.2.0",
+    "@angular/http": "^5.2.0",
+    "@angular/platform-browser": "^5.2.0",
+    "@angular/platform-browser-dynamic": "^5.2.0",
+    "@angular/router": "^5.2.0",
+    "core-js": "^2.4.1",
+    "rxjs": "^5.5.6",
+    "zone.js": "^0.8.19",
     "@angular/cli": "~1.7.4",
     "@angular/compiler-cli": "^5.2.0",
     "@angular/language-service": "^5.2.0",
@@ -38,11 +50,11 @@
     "tslint": "~5.9.1",
     "typescript": "~2.5.3"
   },
-  "main": "bundles/purecloud-fixtable-fangular.umd.js",
-  "module": "esm5/purecloud-fixtable-fangular.js",
-  "es2015": "esm2015/purecloud-fixtable-fangular.js",
-  "typings": "purecloud-fixtable-fangular.d.ts",
-  "metadata": "purecloud-fixtable-fangular.metadata.json",
+  "main": "bundles/fixtable-fangular.umd.js",
+  "module": "esm5/fixtable-fangular.js",
+  "es2015": "esm2015/fixtable-fangular.js",
+  "typings": "fixtable-fangular.d.ts",
+  "metadata": "fixtable-fangular.metadata.json",
   "dependencies": {
     "tslib": "^1.7.1"
   }

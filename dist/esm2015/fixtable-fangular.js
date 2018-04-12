@@ -141,4 +141,4 @@ FixtableModule.decorators = [
  */
 
 export { FixtableModule, ColumnHeaderComponent as ɵb, GridComponent as ɵa };
-//# sourceMappingURL=purecloud-fixtable-fangular.js.map
+//# sourceMappingURL=fixtable-fangular.js.map

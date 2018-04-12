@@ -1,5 +1,8 @@
-import { Component, Input, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common')) :
+	typeof define === 'function' && define.amd ? define('fixtable-fangular', ['exports', '@angular/core', '@angular/common'], factory) :
+	(factory((global['fixtable-fangular'] = {}),global.ng.core,global.ng.common));
+}(this, (function (exports,core,common) { 'use strict';
 
 var GridComponent = /** @class */ (function () {
     function GridComponent() {
@@ -25,7 +28,7 @@ var GridComponent = /** @class */ (function () {
     return GridComponent;
 }());
 GridComponent.decorators = [
-    { type: Component, args: [{
+    { type: core.Component, args: [{
                 selector: 'fixtable-grid',
                 template: "<div *ngIf=\"externalFilter\">\n  <input ngModel=\"externalFilter\" />\n</div>\n<table>\n  <th *ngFor=\"let columnDef of columns\">\n    <fixtable-column-header [SortByKey]=\"SortByKey\" [columnDef]=\"columnDef\"></fixtable-column-header>\n  </th>\n  <tr *ngFor=\"let record of data\">\n    <td *ngFor=\"let columnDef of columns\">\n      <div>{{record[columnDef.key]}}</div>\n    </td>\n  </tr>\n</table>\n",
                 styles: [""]
@@ -33,7 +36,7 @@ GridComponent.decorators = [
 ];
 GridComponent.ctorParameters = function () { return []; };
 GridComponent.propDecorators = {
-    "options": [{ type: Input },],
+    "options": [{ type: core.Input },],
 };
 var ColumnHeaderComponent = /** @class */ (function () {
     function ColumnHeaderComponent() {
@@ -46,7 +49,7 @@ var ColumnHeaderComponent = /** @class */ (function () {
     return ColumnHeaderComponent;
 }());
 ColumnHeaderComponent.decorators = [
-    { type: Component, args: [{
+    { type: core.Component, args: [{
                 selector: 'fixtable-column-header',
                 template: "<th *ngIf=\"!columnDef.sortable\">\n  {{columnDef.header || columnDef.key}}\n</th>\n<th *ngIf=\"columnDef.sortable\">\n  <div (click)=\"SortByMyKey()\">\n    {{columnDef.header || columnDef.key}}\n  </div>\n</th>\n",
                 styles: [""]
@@ -54,10 +57,10 @@ ColumnHeaderComponent.decorators = [
 ];
 ColumnHeaderComponent.ctorParameters = function () { return []; };
 ColumnHeaderComponent.propDecorators = {
-    "columnDef": [{ type: Input },],
-    "SortByKey": [{ type: Input },],
-    "sortBy": [{ type: Input },],
-    "ascending": [{ type: Input },],
+    "columnDef": [{ type: core.Input },],
+    "SortByKey": [{ type: core.Input },],
+    "sortBy": [{ type: core.Input },],
+    "ascending": [{ type: core.Input },],
 };
 var FixtableModule = /** @class */ (function () {
     function FixtableModule() {
@@ -65,9 +68,9 @@ var FixtableModule = /** @class */ (function () {
     return FixtableModule;
 }());
 FixtableModule.decorators = [
-    { type: NgModule, args: [{
+    { type: core.NgModule, args: [{
                 imports: [
-                    CommonModule
+                    common.CommonModule
                 ],
                 declarations: [
                     GridComponent,
@@ -79,5 +82,11 @@ FixtableModule.decorators = [
             },] },
 ];
 
-export { FixtableModule, ColumnHeaderComponent as ɵb, GridComponent as ɵa };
-//# sourceMappingURL=purecloud-fixtable-fangular.js.map
+exports.FixtableModule = FixtableModule;
+exports.ɵb = ColumnHeaderComponent;
+exports.ɵa = GridComponent;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+//# sourceMappingURL=fixtable-fangular.umd.js.map
