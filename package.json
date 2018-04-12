@@ -1,5 +1,5 @@
 {
-  "name": "fixtable-angular2",
+  "name": "@purecloud/fixtable-angular2",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -12,6 +12,14 @@
     "packagr": "ng-packagr -p ng-package.json"
   },
   "private": false,
+  "ngPackage": {
+    "$schema": "./node_modules/ng-packagr/package.schema.json",
+    "ngPackage": {
+      "lib": {
+        "entryFile": "public_api.ts"
+      }
+    }
+  },
   "peerDependencies": {
     "@angular/animations": "^5.2.0",
     "@angular/common": "^5.2.0",
