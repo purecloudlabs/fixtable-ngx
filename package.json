@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "pack": "ng-packagr -p package.json",
+    "packagr": "ng-packagr -p package.json",
+    "postinstall": "yarn packagr"
   },
   "private": false,
   "ngPackage": {
