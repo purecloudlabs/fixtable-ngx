@@ -9,8 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "pack": "ng-packagr -p ng-package.json",
-    "install": "[ -f ./git/hooks/pre-commit ] || cp ./pre-commit .git/hooks/pre-commit && chmod 777 .git/hooks/pre-commit"
+    "pack": "ng-packagr -p package.json",
   },
   "private": false,
   "ngPackage": {
