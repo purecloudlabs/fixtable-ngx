@@ -10,7 +10,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "pack": "ng-packagr -p ng-package.json",
-    "echo": "echo 'I work"
   },
   "private": false,
   "ngPackage": {
@@ -66,6 +65,6 @@
     "tslib": "^1.7.1"
   },
   "pre-commit": [
-    "echo"
+    "pack"
   ]
 }
