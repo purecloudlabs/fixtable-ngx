@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import {FixtableModule} from "./modules/fixtable/fixtable.module";
+import {FixtableModule} from './modules/fixtable/fixtable.module';
 
 
 @NgModule({
