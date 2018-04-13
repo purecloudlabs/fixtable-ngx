@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GridComponent } from './grid/grid.component';
-import { ColumnHeaderComponent } from "./column-header/column-header.component";
+import { ColumnHeaderComponent } from './column-header/column-header.component';
+import { TestPageComponent } from './test-page/test-page.component';
 
 @NgModule({
   imports: [
@@ -9,10 +10,12 @@ import { ColumnHeaderComponent } from "./column-header/column-header.component";
   ],
   declarations: [
     GridComponent,
-    ColumnHeaderComponent
+    ColumnHeaderComponent,
+    TestPageComponent
   ],
   exports: [
-    GridComponent
+    GridComponent,
+    TestPageComponent
   ]
 })
 export class FixtableModule { }

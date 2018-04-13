@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {FixtableModule} from './modules/fixtable/fixtable.module';
 
 
+
 @NgModule({
   declarations: [
     AppComponent

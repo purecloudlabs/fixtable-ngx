@@ -1,12 +1,11 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
 
-
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'fixtable-test-page',
+  templateUrl: './test-page.component.html',
+  styleUrls: ['./test-page.component.less'],
 })
-export class AppComponent implements OnInit {
+export class TestPageComponent implements OnInit {
 
   @HostBinding('class.fixtable') fixtable = true;
 
