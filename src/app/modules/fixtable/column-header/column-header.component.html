@@ -1,8 +1,8 @@
 <th *ngIf="!columnDef.sortable">
-  {{columnDef.header || columnDef.key}}
+  {{columnDef.label || columnDef.property}}
 </th>
 <th *ngIf="columnDef.sortable">
-  <div (click)="SortByMyKey()">
-    {{columnDef.header || columnDef.key}}
+  <div (click)="SortByMyProperty()">
+    {{columnDef.label || columnDef.property}}
   </div>
 </th>

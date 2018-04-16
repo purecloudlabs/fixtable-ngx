@@ -3,8 +3,8 @@ import {ColumnHeaderComponent} from '../column-header/column-header.component';
 import * as _ from 'lodash';
 
 export interface ColumnDef {
-  key: string;
-  header?: string;
+  property: string;
+  label?: string;
   width?: number;
   sortable?: boolean;
   sortCompareMethod?: (a, b) => number;
@@ -43,8 +43,8 @@ export class GridComponent implements OnInit {
 
   private ascending = true;
 
-  SortByKey = ((key: string) => {
-    let defaultSortCompareMethod = (a, b) => a[key] > b[key];
+  SortByProperty = ((property: string) => {
+    let defaultSortCompareMethod = (a, b) => a[property] > b[property];
 
     // Switch to a custom comparator later
     let sortCompareMethod = defaultSortCompareMethod;

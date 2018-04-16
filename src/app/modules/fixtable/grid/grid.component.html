@@ -3,7 +3,7 @@
 </div>
 <table>
   <th *ngFor="let columnDef of columns">
-    <fixtable-column-header [SortByKey]="SortByKey" [columnDef]="columnDef"></fixtable-column-header>
+    <fixtable-column-header [SortByProperty]="SortByProperty" [columnDef]="columnDef"></fixtable-column-header>
   </th>
   <tr *ngFor="let record of data">
     <td *ngFor="let columnDef of columns">

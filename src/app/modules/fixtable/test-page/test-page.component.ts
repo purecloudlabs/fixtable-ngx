@@ -18,7 +18,7 @@ export class TestPageComponent implements OnInit {
 
     this.options = {
       columns: [
-        {key: 'foo', header: 'Foo', sortable: true},
+        {key: 'foo', label: 'Foo', sortable: true},
         {key: 'bar'}
       ],
       data: [

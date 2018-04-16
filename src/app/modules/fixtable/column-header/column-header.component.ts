@@ -12,12 +12,12 @@ export class ColumnHeaderComponent implements OnInit {
   constructor() { }
 
   @Input() columnDef: ColumnDef;
-  @Input() SortByKey: (key: string) => void;
+  @Input() SortByProperty: (key: string) => void;
   @Input() sortBy: string;
   @Input() ascending: boolean;
 
-  SortByMyKey() {
-    this.SortByKey(this.columnDef.key);
+  SortByMyProperty() {
+    this.SortByProperty(this.columnDef.property);
   }
 
   ngOnInit() {
