@@ -1,6 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ContentChildren, QueryList} from '@angular/core';
 import {ColumnHeaderComponent} from '../column-header/column-header.component';
 import * as _ from 'lodash';
+import { FixtableColumnDirective } from '../fixtable-column.directive';
+
+
 
 export interface ColumnDef {
   property: string;
@@ -24,8 +27,22 @@ export interface FixtableOptions {
 
 @Component({
   selector: 'fixtable-grid',
-  templateUrl: './grid.component.html',
-  styleUrls: ['./grid.component.less']
+  template: `
+  <div *ngIf="externalFilter">
+    <input ngModel="externalFilter" />
+  </div>
+  <table>
+    <th *ngFor="let columnDef of columns">
+      <fixtable-column-header [SortByProperty]="SortByProperty" [columnDef]="columnDef"></fixtable-column-header>
+    </th>
+    <tr *ngFor="let record of data">
+      <td *ngFor="let columnDef of columns">
+        <div>{{record[columnDef.key]}}</div>
+      </td>
+    </tr>
+  </table>
+`,
+  styles: []
 })
 export class GridComponent implements OnInit {
 
@@ -33,21 +50,29 @@ export class GridComponent implements OnInit {
   data;
   columns;
   externalFilter;
+  _columnTemplates;
 
   @Input() options: FixtableOptions;
+
+  @ContentChildren(FixtableColumnDirective)
+  set columnTemplates(val: QueryList<FixtableColumnDirective>) {
+    this._columnTemplates = val;
+  }
+
+  get columTemplates(): QueryList<FixtableColumnDirective> {
+    return this._columnTemplates;
+  }
 
   constructor() {
   }
 
-
-
   private ascending = true;
 
   SortByProperty = ((property: string) => {
-    let defaultSortCompareMethod = (a, b) => a[property] > b[property];
+    const defaultSortCompareMethod = (a, b) => a[property] > b[property];
 
     // Switch to a custom comparator later
-    let sortCompareMethod = defaultSortCompareMethod;
+    const sortCompareMethod = defaultSortCompareMethod;
 
     if (this.ascending) {
       this.data.sort(sortCompareMethod);
