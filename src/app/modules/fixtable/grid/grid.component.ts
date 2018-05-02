@@ -33,7 +33,7 @@ export interface FixtableOptions {
   <div *ngIf="externalFilter">
     <input ngModel="externalFilter" />
   </div>
-  <table>
+  <table [ngClass]="options.tableClass">
     <th *ngFor="let column of columns">
       <fixtable-column-header [SortByProperty]="SortByProperty" [column]="column"></fixtable-column-header>
     </th>
@@ -51,8 +51,13 @@ export interface FixtableOptions {
       </td>
     </tr>
   </table>
-`,
-  styles: []
+  `,
+  //TODO: Finish adding scrollable content css from https://www.sitepoint.com/community/t/flexible-html-table-with-fixed-header-and-footer-around-a-scrollable-body/271162/2
+  styles: [`
+    table {
+      table-layout: fixed;
+    }
+  `]
 })
 export class GridComponent implements OnInit {
 
