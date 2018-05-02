@@ -4,7 +4,7 @@ import {Component, HostBinding, OnInit} from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-    <fixtable-test-page></fixtable-test-page>
+    <fixtable-demo></fixtable-demo>
   `,
   styleUrls: ['./app.component.css']
 })

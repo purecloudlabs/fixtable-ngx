@@ -3,9 +3,7 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import {FixtableModule} from './modules/fixtable/fixtable.module';
-
-
+import { DemoModule } from './modules/demo/demo.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +11,7 @@ import {FixtableModule} from './modules/fixtable/fixtable.module';
   ],
   imports: [
     BrowserModule,
-    FixtableModule
+    DemoModule
   ],
   providers: [],
   bootstrap: [AppComponent]
