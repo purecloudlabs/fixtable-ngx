@@ -2,12 +2,12 @@
   <input ngModel="externalFilter" />
 </div>
 <table>
-  <th *ngFor="let columnDef of columns">
-    <fixtable-column-header [SortByProperty]="SortByProperty" [columnDef]="columnDef"></fixtable-column-header>
+  <th *ngFor="let column of columns">
+    <fixtable-column-header [SortByProperty]="SortByProperty" [column]="column"></fixtable-column-header>
   </th>
   <tr *ngFor="let record of data">
-    <td *ngFor="let columnDef of columns">
-      <div>{{record[columnDef.key]}}</div>
+    <td *ngFor="let column of columns">
+      <div>{{record[column.key]}}</div>
     </td>
   </tr>
 </table>

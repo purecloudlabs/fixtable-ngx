@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 
-import {ColumnDef} from '../grid/grid.component';
+import {Column} from '../grid/grid.component';
 
 @Component({
   selector: 'fixtable-column-header',
@@ -11,13 +11,13 @@ export class ColumnHeaderComponent implements OnInit {
 
   constructor() { }
 
-  @Input() columnDef: ColumnDef;
+  @Input() column: Column;
   @Input() SortByProperty: (key: string) => void;
   @Input() sortBy: string;
   @Input() ascending: boolean;
 
   SortByMyProperty() {
-    this.SortByProperty(this.columnDef.property);
+    this.SortByProperty(this.column.property);
   }
 
   ngOnInit() {

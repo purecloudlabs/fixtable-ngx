@@ -1,10 +1,12 @@
 import { Directive } from '@angular/core';
 
 @Directive({
-  selector: '[fixtable-column]'
+  selector: '[fixtableColumn]'
 })
 export class FixtableColumnDirective {
 
-  constructor() { }
+  constructor() { 
+
+  }
 
 }

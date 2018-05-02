@@ -1,8 +1,8 @@
-import { FixtableColumnDirectiveDirective } from './fixtable-column-directive.directive';
+import { FixtableColumnDirective } from './fixtable-column.directive';
 
 describe('FixtableColumnDirectiveDirective', () => {
   it('should create an instance', () => {
-    const directive = new FixtableColumnDirectiveDirective();
+    const directive = new FixtableColumnDirective();
     expect(directive).toBeTruthy();
   });
 });

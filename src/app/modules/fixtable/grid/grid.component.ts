@@ -5,7 +5,7 @@ import { FixtableColumnDirective } from '../fixtable-column.directive';
 
 
 
-export interface ColumnDef {
+export interface Column {
   property: string;
   label?: string;
   width?: number;
@@ -14,12 +14,14 @@ export interface ColumnDef {
   hideLabel?: boolean;
   cellClass?: string;
   component?: string;
+  actionButton?: boolean;
+  onActionButton?: Function;
 }
 
 export interface FixtableOptions {
   data: any[]; // For now, pass in the data array. This is different than the original signature in fixtable-angular
                // but makes more sense with the Angular2 programming model
-  columns: ColumnDef[];
+  columns: Column[];
   tableClass?: string;
   loading: string;
 }
@@ -32,12 +34,20 @@ export interface FixtableOptions {
     <input ngModel="externalFilter" />
   </div>
   <table>
-    <th *ngFor="let columnDef of columns">
-      <fixtable-column-header [SortByProperty]="SortByProperty" [columnDef]="columnDef"></fixtable-column-header>
+    <th *ngFor="let column of columns">
+      <fixtable-column-header [SortByProperty]="SortByProperty" [column]="column"></fixtable-column-header>
     </th>
     <tr *ngFor="let record of data">
-      <td *ngFor="let columnDef of columns">
-        <div>{{record[columnDef.key]}}</div>
+      <td *ngFor="let column of columns; let i = index">
+        <ng-template
+          *ngIf="column.cellTemplate"
+          [ngTemplateOutlet]="column.cellTemplate"
+          [ngTemplateOutletContext]="{row: record, value: record[column.property]}"
+        ></ng-template>
+        <span
+          *ngIf="!column.cellTemplate"
+          [ngClass]="column.cellClasses"
+        >{{record[column.property]}}</span>
       </td>
     </tr>
   </table>
@@ -56,12 +66,14 @@ export class GridComponent implements OnInit {
 
   @ContentChildren(FixtableColumnDirective)
   set columnTemplates(val: QueryList<FixtableColumnDirective>) {
+    this._applyTemplates(val);
     this._columnTemplates = val;
   }
 
-  get columTemplates(): QueryList<FixtableColumnDirective> {
-    return this._columnTemplates;
-  }
+
+  // get columTemplates(): QueryList<FixtableColumnDirective> {
+  //   return this._columnTemplates;
+  // }
 
   constructor() {
   }
@@ -81,6 +93,11 @@ export class GridComponent implements OnInit {
     }
     this.ascending = !this.ascending;
   });
+
+  _applyTemplates(val) {
+    
+  }
+
 
   ngOnInit() {
     this.data = this.options.data;
