@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, ContentChildren, QueryList} from '@angular/core';
-import {ColumnHeaderComponent} from './column-header/column-header.component';
+import {ColumnHeaderComponent} from './column-header.component';
 import * as _ from 'lodash';
 import { FixtableColumnDirective } from './fixtable-column.directive';
 

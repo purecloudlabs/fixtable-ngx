@@ -1,11 +1,20 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
-import {Column} from '../grid.component';
+import { Column } from './grid.component';
 
 @Component({
   selector: 'fixtable-column-header',
-  templateUrl: './column-header.component.html',
-  styleUrls: ['./column-header.component.less']
+  template: `
+    <th *ngIf="!column.sortable">
+      {{column.label || column.property}}
+    </th>
+    <th *ngIf="column.sortable">
+      <div (click)="SortByMyProperty()">
+        {{column.label || column.property}}
+      </div>
+    </th>
+  `,
+  styles: []
 })
 export class ColumnHeaderComponent implements OnInit {
 

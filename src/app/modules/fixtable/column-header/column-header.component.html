@@ -1,8 +1,0 @@
-<th *ngIf="!column.sortable">
-  {{column.label || column.property}}
-</th>
-<th *ngIf="column.sortable">
-  <div (click)="SortByMyProperty()">
-    {{column.label || column.property}}
-  </div>
-</th>
