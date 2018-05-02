@@ -2,13 +2,21 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DemoComponent } from './demo.component';
 import { FixtableModule } from '../fixtable/fixtable.module';
+import { Example1Component } from './example1.component';
+import { RawDataService } from './raw-data.service';
 
 @NgModule({
   imports: [
     CommonModule,
     FixtableModule
   ],
-  declarations: [DemoComponent],
+  declarations: [
+    DemoComponent,
+    Example1Component
+  ],
+  providers: [
+    RawDataService
+  ],
   exports: [
     DemoComponent
   ]

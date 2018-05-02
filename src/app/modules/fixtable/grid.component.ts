@@ -23,9 +23,10 @@ export interface FixtableOptions {
                // but makes more sense with the Angular2 programming model
   columns: Column[];
   tableClass?: string;
-  loading: string;
+  loading?: string;
 }
 
+//1 
 
 @Component({
   selector: 'fixtable-grid',
@@ -33,10 +34,14 @@ export interface FixtableOptions {
   <div *ngIf="externalFilter">
     <input ngModel="externalFilter" />
   </div>
-  <table [ngClass]="options.tableClass">
-    <th *ngFor="let column of columns">
-      <fixtable-column-header [SortByProperty]="SortByProperty" [column]="column"></fixtable-column-header>
-    </th>
+  <table [ngClass]="tableClass">
+    <thead>
+      <tr>
+        <th *ngFor="let column of columns" scope="col">
+          <fixtable-column-header [SortByProperty]="SortByProperty" [column]="column"></fixtable-column-header>
+        </th>
+      <tr>
+    </thead>
     <tr *ngFor="let record of data">
       <td *ngFor="let column of columns; let i = index">
         <ng-template
@@ -50,12 +55,45 @@ export interface FixtableOptions {
         >{{record[column.property]}}</span>
       </td>
     </tr>
+    <tfoot>
+      <tr>
+        <td [colSpan]="columns.length" >Footer</td>
+      </tr>
+    </tfoot>
   </table>
   `,
+
+        // <td *ngFor="let column of columns" scope="col">
+        //   Footer
+        // </td>
   //TODO: Finish adding scrollable content css from https://www.sitepoint.com/community/t/flexible-html-table-with-fixed-header-and-footer-around-a-scrollable-body/271162/2
   styles: [`
     table {
-      table-layout: fixed;
+      max-width:980px;
+      table-layout:fixed;
+      margin:auto;
+    }
+    th, td {
+      padding:5px 10px;
+      border:1px solid #000;
+    }
+    thead, tfoot {
+      background:#f9f9f9;
+      display:table;
+      width:100%;
+      width:calc(100% - 18px);
+    }
+    tbody {
+      height:300px;
+      overflow:auto;
+      overflow-x:hidden;
+      display:block;
+      width:100%;
+    }
+    tbody tr {
+      display:table;
+      width:100%;
+      table-layout:fixed;
     }
   `]
 })
@@ -65,13 +103,14 @@ export class GridComponent implements OnInit {
   data;
   columns;
   externalFilter;
+  tableClass;
+
   _columnTemplates;
 
   @Input() options: FixtableOptions;
 
   @ContentChildren(FixtableColumnDirective)
   set columnTemplates(val: QueryList<FixtableColumnDirective>) {
-    this._applyTemplates(val);
     this._columnTemplates = val;
   }
 
@@ -99,15 +138,14 @@ export class GridComponent implements OnInit {
     this.ascending = !this.ascending;
   });
 
-  _applyTemplates(val) {
-    
-  }
-
 
   ngOnInit() {
-    this.data = this.options.data;
-    this.columns = this.options.columns;
-    this.externalFilter = this.options.columns;
+    if (this.options) {
+      this.data = this.options.data;
+      this.columns = this.options.columns;
+      this.externalFilter = this.options.columns;
+      this.tableClass = this.options.tableClass;
+    }
   }
 
 }

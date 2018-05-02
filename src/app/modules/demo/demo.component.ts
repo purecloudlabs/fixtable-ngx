@@ -1,4 +1,5 @@
 import {Component, HostBinding, OnInit, ViewChild, TemplateRef} from '@angular/core';
+import { RawDataService } from './raw-data.service';
 
 @Component({
   selector: 'fixtable-demo',
@@ -8,6 +9,8 @@ import {Component, HostBinding, OnInit, ViewChild, TemplateRef} from '@angular/c
         <h3>{{value}}</h3>
       </ng-template>
     </fixtable-grid>
+
+    <fixtable-example1></fixtable-example1>
   `,
   styles: [
     `
