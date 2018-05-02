@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 
-import {Column} from '../grid/grid.component';
+import {Column} from '../grid.component';
 
 @Component({
   selector: 'fixtable-column-header',
