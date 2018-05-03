@@ -26,8 +26,6 @@ export interface FixtableOptions {
   loading?: string;
 }
 
-//1 
-
 @Component({
   selector: 'fixtable-grid',
   template: `
@@ -68,33 +66,6 @@ export interface FixtableOptions {
         // </td>
   //TODO: Finish adding scrollable content css from https://www.sitepoint.com/community/t/flexible-html-table-with-fixed-header-and-footer-around-a-scrollable-body/271162/2
   styles: [`
-    table {
-      max-width:980px;
-      table-layout:fixed;
-      margin:auto;
-    }
-    th, td {
-      padding:5px 10px;
-      border:1px solid #000;
-    }
-    thead, tfoot {
-      background:#f9f9f9;
-      display:table;
-      width:100%;
-      width:calc(100% - 18px);
-    }
-    tbody {
-      height:300px;
-      overflow:auto;
-      overflow-x:hidden;
-      display:block;
-      width:100%;
-    }
-    tbody tr {
-      display:table;
-      width:100%;
-      table-layout:fixed;
-    }
   `]
 })
 export class GridComponent implements OnInit {
