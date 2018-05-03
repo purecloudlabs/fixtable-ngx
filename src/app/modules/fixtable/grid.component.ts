@@ -2,6 +2,8 @@ import {Component, Input, OnInit, ContentChildren, QueryList} from '@angular/cor
 import {ColumnHeaderComponent} from './column-header.component';
 import * as _ from 'lodash';
 import { FixtableColumnDirective } from './fixtable-column.directive';
+import { ElementRef } from '@angular/core';
+import 'fixtable/dist/fixtable';
 
 
 
@@ -29,36 +31,46 @@ export interface FixtableOptions {
 @Component({
   selector: 'fixtable-grid',
   template: `
-  <div *ngIf="externalFilter">
-    <input ngModel="externalFilter" />
+  <div class="fixtable">
+    <div class="fixtable-header">
+      <div class="fixtable-filters" *ngIf="externalFilter">
+        <input ngModel="externalFilter" />
+      </div>
+      <div class="fixtable-inner">
+        <table [ngClass]="tableClass">
+          <thead>
+            <tr class="fixtable-column-headers">
+              <th *ngFor="let column of columns" scope="col">
+                <fixtable-column-header [SortByProperty]="SortByProperty" [column]="column"></fixtable-column-header>
+              </th>
+            <tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let record of data">
+              <td *ngFor="let column of columns; let i = index">
+                <ng-template
+                  *ngIf="column.cellTemplate"
+                  [ngTemplateOutlet]="column.cellTemplate"
+                  [ngTemplateOutletContext]="{row: record, value: record[column.property]}"
+                ></ng-template>
+                <span
+                  *ngIf="!column.cellTemplate"
+                  [ngClass]="column.cellClasses"
+                >{{record[column.property]}}</span>
+              </td>
+            </tr>
+          </tbody>
+          <div class="fixtable-footer">
+            <tfoot>
+              <tr>
+                <td [colSpan]="columns.length" >Footer</td>
+              </tr>
+            </tfoot>
+          </div>
+        </table>
+      </div>
+    </div>
   </div>
-  <table [ngClass]="tableClass">
-    <thead>
-      <tr>
-        <th *ngFor="let column of columns" scope="col">
-          <fixtable-column-header [SortByProperty]="SortByProperty" [column]="column"></fixtable-column-header>
-        </th>
-      <tr>
-    </thead>
-    <tr *ngFor="let record of data">
-      <td *ngFor="let column of columns; let i = index">
-        <ng-template
-          *ngIf="column.cellTemplate"
-          [ngTemplateOutlet]="column.cellTemplate"
-          [ngTemplateOutletContext]="{row: record, value: record[column.property]}"
-        ></ng-template>
-        <span
-          *ngIf="!column.cellTemplate"
-          [ngClass]="column.cellClasses"
-        >{{record[column.property]}}</span>
-      </td>
-    </tr>
-    <tfoot>
-      <tr>
-        <td [colSpan]="columns.length" >Footer</td>
-      </tr>
-    </tfoot>
-  </table>
   `,
 
         // <td *ngFor="let column of columns" scope="col">
@@ -78,6 +90,9 @@ export class GridComponent implements OnInit {
 
   _columnTemplates;
 
+  fixtableElement: any;
+  fixtable;
+
   @Input() options: FixtableOptions;
 
   @ContentChildren(FixtableColumnDirective)
@@ -90,7 +105,7 @@ export class GridComponent implements OnInit {
   //   return this._columnTemplates;
   // }
 
-  constructor() {
+  constructor(private element:  ElementRef) {
   }
 
   private ascending = true;
@@ -117,6 +132,8 @@ export class GridComponent implements OnInit {
       this.externalFilter = this.options.columns;
       this.tableClass = this.options.tableClass;
     }
+    this.fixtableElement = this.element.nativeElement.children[0];
+    // this.fixtable = new Fixtable(this.fixtableElement);
   }
 
 }

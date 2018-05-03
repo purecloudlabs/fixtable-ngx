@@ -2558,6 +2558,10 @@ find-up@^2.0.0, find-up@^2.1.0:
   dependencies:
     locate-path "^2.0.0"
 
+fixtable@^2.0.2:
+  version "2.0.2"
+  resolved "https://purecloud.artifactoryonline.com/purecloud/api/npm/inin-internal-npm/fixtable/-/fixtable-2.0.2.tgz?dl=https://registry.yarnpkg.com/fixtable/-/fixtable-2.0.2.tgz#f31f95f965080cd0baf0e90ae54e7e4e38241829"
+
 flush-write-stream@^1.0.0:
   version "1.0.3"
   resolved "https://purecloud.artifactoryonline.com/purecloud/api/npm/inin-internal-npm/flush-write-stream/-/flush-write-stream-1.0.3.tgz#c5d586ef38af6097650b49bc41b55fabb19f35bd"
