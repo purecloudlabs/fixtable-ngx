@@ -90,7 +90,7 @@ export interface FixtableOptions {
   ]
 
 })
-export class GridComponent implements OnInit {
+export class GridComponent implements OnInit, AfterViewChecked {
 
   // Options params
   data;
@@ -144,18 +144,12 @@ export class GridComponent implements OnInit {
       this.externalFilter = this.options.columns;
       this.tableClass = this.options.tableClass;
     }
+  }
 
-    setTimeout(() => {
-      console.log(Fixtable);
+  ngAfterViewChecked() {
       this.fixtableElement = this.element.nativeElement.children[0];
       this.fixtable = new Fixtable(this.fixtableElement);
       this.fixtable.setDimensions();
-    }, 5000);
-    // this.fixtableElement = this.element.nativeElement.children[0];
-    // this.fixtable = new Fixtable(this.fixtableElement);
   }
-
-  // ngAfterViewInit() {
-  // }
 
 }
