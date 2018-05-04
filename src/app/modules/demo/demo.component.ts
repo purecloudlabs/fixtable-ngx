@@ -1,14 +1,16 @@
 import {Component, HostBinding, OnInit, ViewChild, TemplateRef} from '@angular/core';
 import { RawDataService } from './raw-data.service';
 
+
+    // <fixtable-grid [options]="options">
+    //   <ng-template #customTemplate let-row="row" let-value="value">
+    //     <h3>{{value}}</h3>
+    //   </ng-template>
+    // </fixtable-grid>
+
 @Component({
   selector: 'fixtable-demo',
   template: `
-    <fixtable-grid [options]="options">
-      <ng-template #customTemplate let-row="row" let-value="value">
-        <h3>{{value}}</h3>
-      </ng-template>
-    </fixtable-grid>
 
     <fixtable-example1></fixtable-example1>
   `,

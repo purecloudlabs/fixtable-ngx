@@ -6,7 +6,7 @@ import {Component, HostBinding, OnInit} from '@angular/core';
   template: `
     <fixtable-demo></fixtable-demo>
   `,
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.less']
 })
 export class AppComponent implements OnInit {
 

@@ -1,11 +1,12 @@
-import {Component, Input, OnInit, ContentChildren, QueryList} from '@angular/core';
+/* global Fixtable */
+
+import {Component, Input, OnInit, ContentChildren, QueryList, AfterViewChecked, AfterViewInit} from '@angular/core';
 import {ColumnHeaderComponent} from './column-header.component';
 import * as _ from 'lodash';
 import { FixtableColumnDirective } from './fixtable-column.directive';
 import { ElementRef } from '@angular/core';
-import 'fixtable/dist/fixtable';
-
-
+import * as Fixtable from 'fixtable/dist/fixtable';
+import { Observable } from 'rxjs/Observable';
 
 export interface Column {
   property: string;
@@ -32,7 +33,7 @@ export interface FixtableOptions {
   selector: 'fixtable-grid',
   template: `
   <div class="fixtable">
-    <div class="fixtable-header">
+    <div class="fixtable-header"></div>
       <div class="fixtable-filters" *ngIf="externalFilter">
         <input ngModel="externalFilter" />
       </div>
@@ -40,8 +41,10 @@ export interface FixtableOptions {
         <table [ngClass]="tableClass">
           <thead>
             <tr class="fixtable-column-headers">
-              <th *ngFor="let column of columns" scope="col">
-                <fixtable-column-header [SortByProperty]="SortByProperty" [column]="column"></fixtable-column-header>
+              <th *ngFor="let column of columns">
+                <div>
+                  <fixtable-column-header [SortByProperty]="SortByProperty" [column]="column"></fixtable-column-header>
+                </div>
               </th>
             <tr>
           </thead>
@@ -63,22 +66,29 @@ export interface FixtableOptions {
           <div class="fixtable-footer">
             <tfoot>
               <tr>
-                <td [colSpan]="columns.length" >Footer</td>
+              <td [colSpan]="columns && columns.length || 1" >Footer</td>
               </tr>
             </tfoot>
           </div>
         </table>
       </div>
     </div>
-  </div>
   `,
 
         // <td *ngFor="let column of columns" scope="col">
         //   Footer
         // </td>
   //TODO: Finish adding scrollable content css from https://www.sitepoint.com/community/t/flexible-html-table-with-fixed-header-and-footer-around-a-scrollable-body/271162/2
-  styles: [`
-  `]
+  // styles: [`
+  //   .fixtable-styles-circulated {
+  //     height: 400px;
+  //   }
+  // `],
+  styleUrls: [
+    '../../../../node_modules/fixtable/dist/fixtable.min.css',
+    './grid.component.less'
+  ]
+
 })
 export class GridComponent implements OnInit {
 
@@ -125,6 +135,8 @@ export class GridComponent implements OnInit {
   });
 
 
+
+
   ngOnInit() {
     if (this.options) {
       this.data = this.options.data;
@@ -132,8 +144,18 @@ export class GridComponent implements OnInit {
       this.externalFilter = this.options.columns;
       this.tableClass = this.options.tableClass;
     }
-    this.fixtableElement = this.element.nativeElement.children[0];
+
+    setTimeout(() => {
+      console.log(Fixtable);
+      this.fixtableElement = this.element.nativeElement.children[0];
+      this.fixtable = new Fixtable(this.fixtableElement);
+      this.fixtable.setDimensions();
+    }, 5000);
+    // this.fixtableElement = this.element.nativeElement.children[0];
     // this.fixtable = new Fixtable(this.fixtableElement);
   }
+
+  // ngAfterViewInit() {
+  // }
 
 }
