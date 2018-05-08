@@ -8,7 +8,7 @@ import * as _ from 'lodash';
 import { FixtableColumnDirective } from './fixtable-column.directive';
 import { ElementRef } from '@angular/core';
 import * as Fixtable from 'fixtable/dist/fixtable';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 export interface Column {
   property: string;
