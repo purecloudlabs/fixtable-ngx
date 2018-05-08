@@ -74,7 +74,7 @@ export interface FixtableOptions {
           <div class="fixtable-footer">
             <tfoot>
               <tr>
-              <td [colSpan]="columns && columns.length || 1" >Footer</td>
+              <td [colSpan]="columns && columns.length || 1" ></td>
               </tr>
             </tfoot>
           </div>
