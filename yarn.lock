@@ -4557,6 +4557,10 @@ ng-packagr@^2.4.2:
     uglify-js "^3.3.20"
     update-notifier "^2.3.0"
 
+ngx-bootstrap@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/ngx-bootstrap/-/ngx-bootstrap-2.0.4.tgz#26be0eb1b9a5dc133caa93b39ae221d6872c8b55"
+
 no-case@^2.2.0:
   version "2.3.2"
   resolved "https://purecloud.artifactoryonline.com/purecloud/api/npm/inin-internal-npm/no-case/-/no-case-2.3.2.tgz#60b813396be39b3f1288a4c1ed5d1e7d28b464ac"

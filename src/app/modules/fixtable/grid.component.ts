@@ -1,6 +1,8 @@
 /* global Fixtable */
 
-import {Component, Input, OnInit, ContentChildren, QueryList, AfterViewChecked, AfterViewInit} from '@angular/core';
+import {
+  Component, Input, OnInit, ContentChildren, QueryList, AfterViewChecked, AfterViewInit, OnChanges, TemplateRef
+} from '@angular/core';
 import {ColumnHeaderComponent} from './column-header.component';
 import * as _ from 'lodash';
 import { FixtableColumnDirective } from './fixtable-column.directive';
@@ -16,6 +18,7 @@ export interface Column {
   sortCompareMethod?: (a, b) => number;
   hideLabel?: boolean;
   cellClass?: string;
+  cellTemplate?: TemplateRef<any>;
   component?: string;
   actionButton?: boolean;
   onActionButton?: Function;
@@ -29,13 +32,18 @@ export interface FixtableOptions {
   loading?: string;
 }
 
+
+        // <input ngModel="externalFilter" />
+
 @Component({
   selector: 'fixtable-grid',
   template: `
-  <div class="fixtable">
+  <div class="fixtable table">
     <div class="fixtable-header"></div>
       <div class="fixtable-filters" *ngIf="externalFilter">
-        <input ngModel="externalFilter" />
+        <th>
+          <input ngModel="externalFilter" />
+        </th>
       </div>
       <div class="fixtable-inner">
         <table [ngClass]="tableClass">
@@ -58,7 +66,7 @@ export interface FixtableOptions {
                 ></ng-template>
                 <span
                   *ngIf="!column.cellTemplate"
-                  [ngClass]="column.cellClasses"
+                  [ngClass]="column.cellClass"
                 >{{record[column.property]}}</span>
               </td>
             </tr>
@@ -90,7 +98,7 @@ export interface FixtableOptions {
   ]
 
 })
-export class GridComponent implements OnInit, AfterViewChecked {
+export class GridComponent implements AfterViewInit, OnChanges {
 
   // Options params
   data;
@@ -134,22 +142,24 @@ export class GridComponent implements OnInit, AfterViewChecked {
     this.ascending = !this.ascending;
   });
 
-
-
-
-  ngOnInit() {
+  ngOnChanges() {
     if (this.options) {
-      this.data = this.options.data;
-      this.columns = this.options.columns;
-      this.externalFilter = this.options.columns;
-      this.tableClass = this.options.tableClass;
+      for (const option in this.options ) {
+        this[option] = this.options[option];
+      }
     }
   }
 
-  ngAfterViewChecked() {
+  ngAfterViewInit() {
       this.fixtableElement = this.element.nativeElement.children[0];
       this.fixtable = new Fixtable(this.fixtableElement);
+      if (this.columns) {
+          this.columns.forEach((column, index) => {
+          if (column.width) {
+            this.fixtable.setColumnWidth(index + 1, column.width);
+          }
+        });
+      }
       this.fixtable.setDimensions();
   }
-
 }

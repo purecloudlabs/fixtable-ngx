@@ -1,4 +1,4 @@
-import {Component, HostBinding, OnInit, ViewChild, TemplateRef} from '@angular/core';
+import {Component, HostBinding, OnInit, ViewChild, TemplateRef, ViewEncapsulation} from '@angular/core';
 import { RawDataService } from './raw-data.service';
 
 
@@ -11,13 +11,18 @@ import { RawDataService } from './raw-data.service';
 @Component({
   selector: 'fixtable-demo',
   template: `
+    <div style="padding: 10px;">
+      <div class="panel panel-default">
+        <fixtable-example1></fixtable-example1>
+      </div>
 
-    <fixtable-example1></fixtable-example1>
+      <fixtable-example2></fixtable-example2>
+
+    </div>
   `,
-  styles: [
-    `
-      :host ::ng-deep .pink {background-color: pink;}
-    `
+  encapsulation: ViewEncapsulation.None,
+  styleUrls: [
+    './demo.component.less'
   ],
 })
 export class DemoComponent implements OnInit {

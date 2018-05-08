@@ -1,25 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { RawDataService } from './raw-data.service';
 import { FixtableOptions } from '../fixtable/grid.component';
-import { setTheme } from 'ngx-bootstrap/utils';
 
 @Component({
-  selector: 'fixtable-example1',
+  selector: 'fixtable-example2',
   template: `
     <fixtable-grid
       [options]="options"
     >
-
+      <ng-template #ratingImage let-row="row">
+        <div class="rating rating-{{row.rating.toLowerCase() }}"></div>
+      </ng-template>
     <fixtable-grid>
   `,
   styles: []
 })
-export class Example1Component implements OnInit {
+export class Example2Component implements OnInit {
 
   options: FixtableOptions;
 
-  constructor(private rawData: RawDataService) {
-  }
+  @ViewChild('ratingImage') ratingImage: TemplateRef<any>;
+
+  constructor(private rawData: RawDataService) { }
 
 
   ngOnInit() {
@@ -29,11 +31,13 @@ export class Example1Component implements OnInit {
       columns: [
         {
           property: 'year',
-          label: 'Year'
+          label: 'Year',
+          width: 80
         },
         {
           property: 'title',
-          label: 'Film'
+          label: 'Film',
+          cellClass: 'text-italic'
         },
         {
           property: 'director',
@@ -41,13 +45,12 @@ export class Example1Component implements OnInit {
         },
         {
           property: 'rating',
-          label: 'Rating'
+          label: 'Rating',
+          cellTemplate: this.ratingImage,
+          width: 80
         }
       ],
       tableClass: 'table'
     };
-
   }
-
 }
-
