@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { RawDataService } from './raw-data.service';
-import { FixtableOptions } from '../fixtable/grid.component';
+import { FixtableOptions } from '../fixtable/fixtable.component';
 import { setTheme } from 'ngx-bootstrap/utils';
 
 @Component({
   selector: 'fixtable-example1',
   template: `
-    <fixtable-grid
+    <fixtable
       [options]="options"
     >
 
-    <fixtable-grid>
+    <fixtable>
   `,
   styles: []
 })

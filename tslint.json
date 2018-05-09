@@ -16,7 +16,7 @@
     },
     "eofline": true,
     "import-blacklist": [
-      true,
+      false,
       "rxjs",
       "rxjs/Rx"
     ],
@@ -126,7 +126,7 @@
       "camelCase"
     ],
     "component-selector": [
-      true,
+      false,
       "element",
       [
         "app",

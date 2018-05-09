@@ -36,7 +36,7 @@ export interface FixtableOptions {
         // <input ngModel="externalFilter" />
 
 @Component({
-  selector: 'fixtable-grid',
+  selector: 'fixtable',
   template: `
   <div class="fixtable table">
     <div class="fixtable-header"></div>
@@ -86,7 +86,6 @@ export interface FixtableOptions {
         // <td *ngFor="let column of columns" scope="col">
         //   Footer
         // </td>
-  //TODO: Finish adding scrollable content css from https://www.sitepoint.com/community/t/flexible-html-table-with-fixed-header-and-footer-around-a-scrollable-body/271162/2
   // styles: [`
   //   .fixtable-styles-circulated {
   //     height: 400px;
@@ -94,11 +93,11 @@ export interface FixtableOptions {
   // `],
   styleUrls: [
     '../../../../node_modules/fixtable/dist/fixtable.min.css',
-    './grid.component.less'
+    './fixtable.component.less'
   ]
 
 })
-export class GridComponent implements AfterViewInit, OnChanges {
+export class FixtableComponent implements AfterViewInit, OnChanges {
 
   // Options params
   data;

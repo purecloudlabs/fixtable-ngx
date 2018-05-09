@@ -1,17 +1,17 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { RawDataService } from './raw-data.service';
-import { FixtableOptions } from '../fixtable/grid.component';
+import { FixtableOptions } from '../fixtable/fixtable.component';
 
 @Component({
   selector: 'fixtable-example2',
   template: `
-    <fixtable-grid
+    <fixtable
       [options]="options"
     >
       <ng-template #ratingImage let-row="row">
         <div class="rating rating-{{row.rating.toLowerCase() }}"></div>
       </ng-template>
-    <fixtable-grid>
+    <fixtable>
   `,
   styles: []
 })

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GridComponent } from './grid.component';
+import { FixtableComponent } from './fixtable.component';
 import { ColumnHeaderComponent } from './column-header.component';
 import { FixtableColumnDirective } from './fixtable-column.directive';
 
@@ -9,12 +9,12 @@ import { FixtableColumnDirective } from './fixtable-column.directive';
     CommonModule
   ],
   declarations: [
-    GridComponent,
+    FixtableComponent,
     ColumnHeaderComponent,
     FixtableColumnDirective
   ],
   exports: [
-    GridComponent,
+    FixtableComponent,
   ]
 })
 export class FixtableModule { }
