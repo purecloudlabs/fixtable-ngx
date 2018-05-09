@@ -10,7 +10,7 @@ import { ElementRef } from '@angular/core';
 import * as Fixtable from 'fixtable/dist/fixtable';
 import { Observable } from 'rxjs';
 
-export interface Column {
+export interface FixtableColumn {
   property: string;
   label?: string;
   width?: number;
@@ -22,14 +22,6 @@ export interface Column {
   component?: string;
   actionButton?: boolean;
   onActionButton?: Function;
-}
-
-export interface FixtableOptions {
-  data: any[]; // For now, pass in the data array. This is different than the original signature in fixtable-angular
-               // but makes more sense with the Angular2 programming model
-  columns: Column[];
-  tableClass?: string;
-  loading?: string;
 }
 
 @Component({
@@ -98,7 +90,7 @@ export class FixtableComponent implements OnInit, AfterViewInit, OnChanges {
   fixtableElement: any;
   table: any;
 
-  @Input() columns: Column[];
+  @Input() columns: FixtableColumn[];
   @Input() rows: any[];
 
   @ContentChildren(FixtableColumnDirective)
@@ -126,11 +118,11 @@ export class FixtableComponent implements OnInit, AfterViewInit, OnChanges {
   });
 
   ngOnChanges() {
-    console.log('ngOnChanges', this.columns, this.rows);
+    // console.log('ngOnChanges', this.columns, this.rows);
   }
 
   ngOnInit() {
-    console.log('ngOnInit', this.columns, this.rows);
+    // console.log('ngOnInit', this.columns, this.rows);
   }
 
   ngAfterViewInit() {

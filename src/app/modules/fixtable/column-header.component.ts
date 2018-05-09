@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Column } from './fixtable.component';
+import { FixtableColumn } from './fixtable.component';
 
 @Component({
   selector: 'fixtable-column-header',
@@ -20,7 +20,7 @@ export class ColumnHeaderComponent implements OnInit {
 
   constructor() { }
 
-  @Input() column: Column;
+  @Input() column: FixtableColumn;
   @Input() SortByProperty: (key: string) => void;
   @Input() sortBy: string;
   @Input() ascending: boolean;
