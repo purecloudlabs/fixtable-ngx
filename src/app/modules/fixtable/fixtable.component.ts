@@ -54,17 +54,17 @@ export interface FixtableOptions {
             <tr>
           </thead>
           <tbody>
-            <tr *ngFor="let record of data">
+            <tr *ngFor="let row of rows">
               <td *ngFor="let column of columns; let i = index">
                 <ng-template
                   *ngIf="column.cellTemplate"
                   [ngTemplateOutlet]="column.cellTemplate"
-                  [ngTemplateOutletContext]="{row: record, value: record[column.property]}"
+                  [ngTemplateOutletContext]="{row: row, value: row[column.property]}"
                 ></ng-template>
                 <span
                   *ngIf="!column.cellTemplate"
                   [ngClass]="column.cellClass"
-                >{{record[column.property]}}</span>
+                >{{row[column.property]}}</span>
               </td>
             </tr>
           </tbody>
@@ -86,30 +86,25 @@ export interface FixtableOptions {
   ]
 
 })
-export class FixtableComponent implements AfterViewInit, OnChanges {
+export class FixtableComponent implements OnInit, AfterViewInit, OnChanges {
 
   // Options params
   data;
-  columns;
   externalFilter;
   tableClass;
 
   _columnTemplates;
 
   fixtableElement: any;
-  fixtable;
+  table: any;
 
-  @Input() options: FixtableOptions;
+  @Input() columns: Column[];
+  @Input() rows: any[];
 
   @ContentChildren(FixtableColumnDirective)
   set columnTemplates(val: QueryList<FixtableColumnDirective>) {
     this._columnTemplates = val;
   }
-
-
-  // get columTemplates(): QueryList<FixtableColumnDirective> {
-  //   return this._columnTemplates;
-  // }
 
   constructor(private element:  ElementRef) {
   }
@@ -131,23 +126,23 @@ export class FixtableComponent implements AfterViewInit, OnChanges {
   });
 
   ngOnChanges() {
-    if (this.options) {
-      for (const option in this.options ) {
-        this[option] = this.options[option];
-      }
-    }
+    console.log('ngOnChanges', this.columns, this.rows);
+  }
+
+  ngOnInit() {
+    console.log('ngOnInit', this.columns, this.rows);
   }
 
   ngAfterViewInit() {
-      this.fixtableElement = this.element.nativeElement.children[0];
-      this.fixtable = new Fixtable(this.fixtableElement);
-      if (this.columns) {
-          this.columns.forEach((column, index) => {
-          if (column.width) {
-            this.fixtable.setColumnWidth(index + 1, column.width);
-          }
-        });
-      }
-      this.fixtable.setDimensions();
+    this.fixtableElement = this.element.nativeElement.children[0];
+    this.table = new Fixtable(this.fixtableElement);
+    if (this.columns) {
+        this.columns.forEach((column, index) => {
+        if (column.width) {
+          this.table.setColumnWidth(index + 1, column.width);
+        }
+      });
+    }
+    this.table.setDimensions();
   }
 }
