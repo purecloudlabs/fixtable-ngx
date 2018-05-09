@@ -32,9 +32,6 @@ export interface FixtableOptions {
   loading?: string;
 }
 
-
-        // <input ngModel="externalFilter" />
-
 @Component({
   selector: 'fixtable',
   template: `
@@ -83,14 +80,6 @@ export interface FixtableOptions {
     </div>
   `,
 
-        // <td *ngFor="let column of columns" scope="col">
-        //   Footer
-        // </td>
-  // styles: [`
-  //   .fixtable-styles-circulated {
-  //     height: 400px;
-  //   }
-  // `],
   styleUrls: [
     '../../../../node_modules/fixtable/dist/fixtable.min.css',
     './fixtable.component.less'

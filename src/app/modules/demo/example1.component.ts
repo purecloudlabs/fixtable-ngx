@@ -5,13 +5,7 @@ import { setTheme } from 'ngx-bootstrap/utils';
 
 @Component({
   selector: 'fixtable-example1',
-  template: `
-    <fixtable
-      [options]="options"
-    >
-
-    <fixtable>
-  `,
+  template: `<fixtable [options]="options"><fixtable>`,
   styles: []
 })
 export class Example1Component implements OnInit {
@@ -21,9 +15,7 @@ export class Example1Component implements OnInit {
   constructor(private rawData: RawDataService) {
   }
 
-
   ngOnInit() {
-
     this.options = {
       data: this.rawData.getData(),
       columns: [
@@ -46,8 +38,6 @@ export class Example1Component implements OnInit {
       ],
       tableClass: 'table'
     };
-
   }
-
 }
 
