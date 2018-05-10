@@ -49,3 +49,4 @@ Thumbs.db
 dist.tgz
 fixtable-fangular-*.tgz
 yarn.lock
+.npmrc
