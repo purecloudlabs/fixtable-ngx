@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { RawDataService } from './raw-data.service';
-import { FixtableColumn } from '../fixtable/fixtable.component';
+import { Column } from '../fixtable/fixtable.component';
 
 @Component({
   selector: 'fixtable-example2',
@@ -15,7 +15,7 @@ import { FixtableColumn } from '../fixtable/fixtable.component';
 })
 export class Example2Component implements OnInit {
 
-  columns: FixtableColumn[];
+  columns: Column[];
   rows: any[];
 
   @ViewChild('ratingImage') ratingImage: TemplateRef<any>;

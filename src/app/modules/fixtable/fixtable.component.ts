@@ -10,7 +10,7 @@ import { ElementRef } from '@angular/core';
 import * as Fixtable from 'fixtable/dist/fixtable';
 import { Observable } from 'rxjs';
 
-export interface FixtableColumn {
+export interface Column {
   property: string;
   label?: string;
   width?: number;
@@ -90,7 +90,7 @@ export class FixtableComponent implements OnInit, AfterViewInit, OnChanges {
   fixtableElement: any;
   table: any;
 
-  @Input() columns: FixtableColumn[];
+  @Input() columns: Column[];
   @Input() rows: any[];
 
   @ContentChildren(FixtableColumnDirective)

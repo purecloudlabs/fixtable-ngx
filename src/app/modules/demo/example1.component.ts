@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RawDataService } from './raw-data.service';
 import { setTheme } from 'ngx-bootstrap/utils';
-import { FixtableColumn } from '../fixtable/fixtable.component';
+import { Column } from '../fixtable/fixtable.component';
 
 @Component({
   selector: 'fixtable-example1',
@@ -10,7 +10,7 @@ import { FixtableColumn } from '../fixtable/fixtable.component';
 })
 export class Example1Component implements OnInit {
 
-  columns: FixtableColumn[];
+  columns: Column[];
   rows: any[];
 
   constructor(private rawData: RawDataService) {
