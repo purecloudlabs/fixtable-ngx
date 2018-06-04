@@ -1,7 +1,17 @@
 /* global Fixtable */
 
 import {
-  Component, Input, OnInit, ContentChildren, QueryList, AfterViewChecked, AfterViewInit, OnChanges, TemplateRef
+  Component,
+  Input,
+  OnInit,
+  ContentChildren,
+  QueryList,
+  AfterViewChecked,
+  AfterViewInit,
+  OnChanges,
+  TemplateRef,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import {ColumnHeaderComponent} from './column-header.component';
 import * as _ from 'lodash';
@@ -63,7 +73,10 @@ export interface Column {
           <div class="fixtable-footer">
             <tfoot>
               <tr>
-              <td [colSpan]="columns && columns.length || 1" ></td>
+                <td [colSpan]="columns && columns.length || 1" >
+                  <a (click)="previousPage()" href="javascript:;">Prev</a>
+                  <a (click)="nextPage()" href="javascript:;">Next</a>
+                </td>
               </tr>
             </tfoot>
           </div>
@@ -91,7 +104,13 @@ export class FixtableComponent implements OnInit, AfterViewInit, OnChanges {
   table: any;
 
   @Input() columns: Column[];
-  @Input() rows: any[];
+  @Input() rows?: any[] = [];
+  @Input() pageNumber = 1;
+  @Input() pageSize: number;
+  @Input() totalRows: number;
+
+  // Update the page number, rows and (if necessary) total rows from outside
+  @Output() getPage = new EventEmitter<number>();
 
   @ContentChildren(FixtableColumnDirective)
   set columnTemplates(val: QueryList<FixtableColumnDirective>) {
@@ -137,4 +156,17 @@ export class FixtableComponent implements OnInit, AfterViewInit, OnChanges {
     }
     this.table.setDimensions();
   }
+
+  previousPage() {
+    this.getPage.emit(this.pageNumber - 1);
+  }
+
+  nextPage() {
+    this.getPage.emit(this.pageNumber + 1);
+  }
+
+  clickPageNumber(i: number) {
+    this.getPage.emit(i);
+  }
+
 }

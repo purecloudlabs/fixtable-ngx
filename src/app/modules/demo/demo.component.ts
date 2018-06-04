@@ -18,6 +18,8 @@ import { RawDataService } from './raw-data.service';
 
       <fixtable-example2></fixtable-example2>
 
+      <fixtable-example3></fixtable-example3>
+
     </div>
   `,
   encapsulation: ViewEncapsulation.None,

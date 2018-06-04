@@ -5,6 +5,7 @@ import { FixtableModule } from '../fixtable/fixtable.module';
 import { Example1Component } from './example1.component';
 import { RawDataService } from './raw-data.service';
 import { Example2Component } from './example2.component';
+import { Example3Component } from './example3.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { Example2Component } from './example2.component';
   declarations: [
     DemoComponent,
     Example1Component,
-    Example2Component
+    Example2Component,
+    Example3Component
   ],
   providers: [
     RawDataService
