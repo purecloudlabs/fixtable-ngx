@@ -75,6 +75,9 @@ export interface Column {
               <tr>
                 <td [colSpan]="columns && columns.length || 1" >
                   <a (click)="previousPage()" href="javascript:;">Prev</a>
+                  <div *ngFor="let p of pageNumbers">
+                    <a (click)="clickPageNumber(p)" href="javascript:;">{{p}}</a>
+                  </div>
                   <a (click)="nextPage()" href="javascript:;">Next</a>
                 </td>
               </tr>
@@ -112,6 +115,12 @@ export class FixtableComponent implements OnInit, AfterViewInit, OnChanges {
   // Update the page number, rows and (if necessary) total rows from outside
   @Output() getPage = new EventEmitter<number>();
 
+  // Just grabs an array of ascending numbers beginning with 1
+  get pageNumbers() {
+    const totalPages = Math.ceil(this.totalRows / this.pageSize) + 1 || 0;
+    return Array.from(Array(totalPages).keys()).slice(1);
+  }
+
   @ContentChildren(FixtableColumnDirective)
   set columnTemplates(val: QueryList<FixtableColumnDirective>) {
     this._columnTemplates = val;
@@ -143,6 +152,7 @@ export class FixtableComponent implements OnInit, AfterViewInit, OnChanges {
   ngOnInit() {
     // console.log('ngOnInit', this.columns, this.rows);
   }
+
 
   ngAfterViewInit() {
     this.fixtableElement = this.element.nativeElement.children[0];
