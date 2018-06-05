@@ -74,11 +74,11 @@ export interface Column {
             <tfoot>
               <tr>
                 <td [colSpan]="columns && columns.length || 1" >
-                  <a (click)="previousPage()" href="javascript:;">Prev</a>
-                  <div *ngFor="let p of pageNumbers">
-                    <a (click)="clickPageNumber(p)" href="javascript:;">{{p}}</a>
-                  </div>
-                  <a (click)="nextPage()" href="javascript:;">Next</a>
+                  <a (click)="previousPage()" href="javascript:;">\<</a>
+                  <span *ngFor="let p of pageNumbers">
+                    <a (click)="clickPageNumber(p)" [href]="p === pageNumber ? 'javascript:;' : null">{{p}}</a>
+                  </span>
+                  <a (click)="nextPage()" href="javascript:;">\></a>
                 </td>
               </tr>
             </tfoot>
@@ -91,6 +91,11 @@ export interface Column {
   styleUrls: [
     '../../../../node_modules/fixtable/dist/fixtable.min.css',
     './fixtable.component.less'
+  ],
+  styles: [
+    `
+      
+    `
   ]
 
 })
