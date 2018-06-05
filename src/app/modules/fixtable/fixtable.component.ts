@@ -74,11 +74,11 @@ export interface Column {
             <tfoot>
               <tr>
                 <td [colSpan]="columns && columns.length || 1" >
-                  <a (click)="previousPage()" href="javascript:;">\<</a>
+                  <a *ngIf="pageNumber>1" (click)="previousPage()" href="javascript:;">\<</a>
                   <span *ngFor="let p of pageNumbers">
                     <a (click)="clickPageNumber(p)" [href]="p === pageNumber ? 'javascript:;' : null">{{p}}</a>
                   </span>
-                  <a (click)="nextPage()" href="javascript:;">\></a>
+                  <a *ngIf="pageNumber<totalPages-1" (click)="nextPage()" href="javascript:;">\></a>
                 </td>
               </tr>
             </tfoot>
@@ -91,13 +91,7 @@ export interface Column {
   styleUrls: [
     '../../../../node_modules/fixtable/dist/fixtable.min.css',
     './fixtable.component.less'
-  ],
-  styles: [
-    `
-      
-    `
   ]
-
 })
 export class FixtableComponent implements OnInit, AfterViewInit, OnChanges {
 
@@ -120,10 +114,13 @@ export class FixtableComponent implements OnInit, AfterViewInit, OnChanges {
   // Update the page number, rows and (if necessary) total rows from outside
   @Output() getPage = new EventEmitter<number>();
 
+  get totalPages() {
+    return Math.ceil(this.totalRows / this.pageSize) + 1 || 0;
+  }
+
   // Just grabs an array of ascending numbers beginning with 1
   get pageNumbers() {
-    const totalPages = Math.ceil(this.totalRows / this.pageSize) + 1 || 0;
-    return Array.from(Array(totalPages).keys()).slice(1);
+    return Array.from(Array(this.totalPages).keys()).slice(1);
   }
 
   @ContentChildren(FixtableColumnDirective)
